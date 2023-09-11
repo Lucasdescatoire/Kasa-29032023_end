@@ -41,21 +41,7 @@ export default function ScrollToTop() {
                 <div
                     onClick={scrollToTop}
                     className="ButtonScrollTop"
-                    /*style={{
-                        background: "grey",
-                        border: "none",
-                        borderRadius: "50%",
-                        color: "white",
-                        boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25)",
-                        opacity: "0.7",
-                        cursor: "pointer",
-                        fontSize: "30px",
-                        lineHeight: "48px",
-                        width: "48px",
-                        position: "fixed",
-                        bottom: "300px",
-                        right: "3.5px",
-                    }}*/
+                  
                 >
                     <FontAwesomeIcon icon={["fas", "chevron-up"]}  />
                 </div>
