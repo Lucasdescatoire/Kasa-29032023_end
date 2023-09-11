@@ -1,0 +1,65 @@
+import React, { useEffect, useState } from "react";
+import "../Styles/ScrollTopBtn.scss";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { fab } from '@fortawesome/free-brands-svg-icons'
+import {faChevronUp} from "@fortawesome/free-solid-svg-icons";
+library.add(fab, faChevronUp );
+
+
+
+export default function ScrollToTop() {
+    const [isVisible, setIsVisible] = useState(false)
+
+    // Top: 0 pour remonter en haut de la page
+    // Behavior: smooth pour que le scroll rester smooth jusqu'en haut de la page
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
+    useEffect(() => {
+        // Button s'affiche apres avoir scroll jus'à un certain point du window
+        const toggleVisibility = () => {
+            if (window.scrollY > 700 ){
+                setIsVisible(true);
+            } else {
+                setIsVisible(false);
+            }
+        }
+
+        window.addEventListener("scroll", toggleVisibility);
+
+        return () => window.removeEventListener("scroll", toggleVisibility);
+    }, [])
+
+    return (
+        <div className="MainDivScrollTop">
+            {isVisible && (
+                <div
+                    onClick={scrollToTop}
+                    className="ButtonScrollTop"
+                    /*style={{
+                        background: "grey",
+                        border: "none",
+                        borderRadius: "50%",
+                        color: "white",
+                        boxShadow:"0px 4px 4px rgba(0, 0, 0, 0.25)",
+                        opacity: "0.7",
+                        cursor: "pointer",
+                        fontSize: "30px",
+                        lineHeight: "48px",
+                        width: "48px",
+                        position: "fixed",
+                        bottom: "300px",
+                        right: "3.5px",
+                    }}*/
+                >
+                    <FontAwesomeIcon icon={["fas", "chevron-up"]}  />
+                </div>
+            )}
+        </div>
+    )
+}
